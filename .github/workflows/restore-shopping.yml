@@ -6,6 +6,7 @@ on:
       - 'scripts/restore_shopping.py'
       - 'scripts/add_shopping_reminder.py'
       - 'scripts/fix_reminder_timing.py'
+      - 'scripts/centralize_item_classification.py'
 permissions:
   contents: write
 jobs:
@@ -16,9 +17,10 @@ jobs:
       - run: python scripts/restore_shopping.py
       - run: python scripts/add_shopping_reminder.py
       - run: python scripts/fix_reminder_timing.py
+      - run: python scripts/centralize_item_classification.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Fix shopping reminder after DB load"
+          git diff --cached --quiet || git commit -m "Centralize preparation and shopping classification"
           git push
