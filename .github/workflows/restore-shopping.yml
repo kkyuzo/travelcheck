@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - '.github/workflows/restore-shopping.yml'
+      - 'scripts/restore_shopping.py'
+      - 'scripts/add_shopping_reminder.py'
 permissions:
   contents: write
 jobs:
@@ -11,9 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python scripts/restore_shopping.py
+      - run: python scripts/add_shopping_reminder.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Restore shopping tab and separate purchase items"
+          git diff --cached --quiet || git commit -m "Add D-1 shopping reminder popup"
           git push
