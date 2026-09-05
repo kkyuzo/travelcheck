@@ -7,6 +7,7 @@ on:
       - 'scripts/add_shopping_reminder.py'
       - 'scripts/fix_reminder_timing.py'
       - 'scripts/centralize_item_classification.py'
+      - 'scripts/fix_report_settlement.py'
 permissions:
   contents: write
 jobs:
@@ -18,9 +19,10 @@ jobs:
       - run: python scripts/add_shopping_reminder.py
       - run: python scripts/fix_reminder_timing.py
       - run: python scripts/centralize_item_classification.py
+      - run: python scripts/fix_report_settlement.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
-          git diff --cached --quiet || git commit -m "Centralize preparation and shopping classification"
+          git diff --cached --quiet || git commit -m "Fix final report settlement logic"
           git push
